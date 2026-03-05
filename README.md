@@ -6,21 +6,35 @@ Sensor data analysis LLM tool for CASPIAN Prosthetics S.O.C.K.S (Sensor-Optimize
 
 ## Deploy to Render (for others to use)
 
-1. **Push your repo to GitHub** (if not already).
+Push your repo to GitHub first, then create two services on Render:
 
-2. **Deploy on Render**
-   - Go to [render.com](https://render.com) → **New** → **Blueprint**
-   - Connect your GitHub repo and select this project
-   - Render will detect `render.yaml` and create both services
+### Backend (Web Service)
 
-3. **Set environment variables** (Render Dashboard → each service → Environment):
-   - **Backend:** `OPENAI_API_KEY` = your OpenAI API key  
-   - **Backend:** `CORS_ORIGINS` = your frontend URL (e.g. `https://caspian-frontend.onrender.com`)  
-   - **Frontend:** `VITE_API_URL` = your backend URL (e.g. `https://caspian-backend.onrender.com`)
+1. [render.com](https://render.com) → **New** → **Web Service**
+2. Connect your GitHub repo, select this project
+3. Settings:
+   - **Root Directory:** `backend`
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
+4. Add environment variable: `OPENAI_API_KEY` = your key
+5. Deploy → copy your backend URL (e.g. `https://caspian-backend.onrender.com`)
+6. Add `CORS_ORIGINS` = your frontend URL (see below) and redeploy
 
-4. **First deploy:** Deploy backend and frontend. Use placeholder URLs if needed, then set `CORS_ORIGINS` and `VITE_API_URL` to the real URLs and redeploy.
+### Frontend (Static Site)
 
-5. **Link from Wix:** On your Caspian Follow-Up Care page, add a button/link pointing to your frontend URL.
+1. [render.com](https://render.com) → **New** → **Static Site**
+2. Connect the same GitHub repo
+3. Settings:
+   - **Root Directory:** `frontend`
+   - **Build Command:** `npm install && npm run build`
+   - **Publish Directory:** `dist`
+4. Add environment variable: `VITE_API_URL` = your backend URL (from step 5 above)
+5. Deploy → copy your frontend URL (e.g. `https://caspian-frontend.onrender.com`)
+
+### Wire it up
+
+- Set **Backend** `CORS_ORIGINS` to your frontend URL, then redeploy the backend
+- **Link from Wix:** On your Caspian Follow-Up Care page, add a button linking to your frontend URL
 
 ---
 
@@ -80,7 +94,6 @@ VITE_API_URL=http://localhost:8000
 
 - `backend/` — FastAPI app, SQLite DB, OpenAI LLM integration
 - `frontend/` — React + Vite UI (sensors form, insights display)
-- `render.yaml` — Render Blueprint for one-click deploy
 - `.env.example` — Environment variable templates
 
 ## Requirements
