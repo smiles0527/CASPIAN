@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,6 +9,10 @@ from typing import Optional
 from database import init_db, get_db
 from models import Entry
 from llm_service import generate_insights
+
+# CORS: use CORS_ORIGINS env var (comma-separated) or default to localhost for dev
+_cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
+CORS_ORIGINS = [o.strip() for o in _cors_origins.split(",") if o.strip()]
 
 
 # --- Pydantic schemas ---
@@ -47,7 +52,7 @@ app = FastAPI(title="CASPIAN Follow-Up Care", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

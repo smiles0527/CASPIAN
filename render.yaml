@@ -1,0 +1,28 @@
+# Render Blueprint - Deploy both backend and frontend
+# See README "Deploy to Render" for setup steps
+
+services:
+  - type: web
+    name: caspian-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+        # Set in Render Dashboard: Environment
+      - key: CORS_ORIGINS
+        sync: false
+        # Set to your frontend URL after it's deployed, e.g. https://caspian-frontend.onrender.com
+
+  - type: web
+    name: caspian-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+        # Set to your backend URL, e.g. https://caspian-backend.onrender.com
