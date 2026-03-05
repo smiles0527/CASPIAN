@@ -1,0 +1,217 @@
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+
+@media (prefers-color-scheme: light) {
+  .tagline {
+    color: #555;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Sensor Form */
+.sensor-form {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: light) {
+  .sensor-form {
+    background: #f8f9fa;
+    border-color: #e0e0e0;
+  }
+}
+
+.sensor-form h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.sensor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sensor-field label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (prefers-color-scheme: light) {
+  .sensor-field label {
+    color: #666;
+  }
+}
+
+.sensor-field input {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+.sensor-field input:focus {
+  outline: none;
+  border-color: #646cff;
+}
+
+@media (prefers-color-scheme: light) {
+  .sensor-field input {
+    background: #fff;
+    border-color: #ddd;
+  }
+}
+
+.feelings-field {
+  margin-bottom: 1rem;
+}
+
+.feelings-field label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.feelings-field textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.feelings-field textarea:focus {
+  outline: none;
+  border-color: #646cff;
+}
+
+@media (prefers-color-scheme: light) {
+  .feelings-field textarea {
+    background: #fff;
+    border-color: #ddd;
+  }
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.submit-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  background: #646cff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #535bf2;
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Insights Display */
+.insights-display {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: light) {
+  .insights-display {
+    background: #f8f9fa;
+    border-color: #e0e0e0;
+  }
+}
+
+.insights-display h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.insights-display section {
+  margin-bottom: 1rem;
+}
+
+.insights-display h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (prefers-color-scheme: light) {
+  .insights-display h3 {
+    color: #333;
+  }
+}
+
+.insights-display .summary {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.care-plan ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.7;
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .disclaimer {
+    color: #888;
+  }
+}
