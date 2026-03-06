@@ -59,11 +59,36 @@ export default function SensorForm({ onInsightsGenerated }) {
   return (
     <form onSubmit={handleSubmit} className="sensor-form">
       <h2>Sensors</h2>
-      <div className="sensor-grid">
-        {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
-          <div key={num} className="sensor-field">
-            <label htmlFor={`sensor-${num}`}>Sensor {num}</label>
-            <input
+      <p className="sensor-legend">
+        <strong>1–6:</strong> Pressure sensors (force at high-load areas). <strong>7–20:</strong> Stimulation sensors (near nerve-rich regions, for phantom limb pain). Values 0–100.
+      </p>
+      <div className="sensor-group">
+        <h3>Pressure (1–6)</h3>
+        <div className="sensor-grid">
+          {[1, 2, 3, 4, 5, 6].map((num) => (
+            <div key={num} className="sensor-field">
+              <label htmlFor={`sensor-${num}`}>Sensor {num}</label>
+              <input
+                id={`sensor-${num}`}
+                type="number"
+                min={0}
+                max={100}
+                step="0.1"
+                placeholder="—"
+                value={sensors[`sensor_${num}`] ?? ""}
+                onChange={(e) => handleSensorChange(num, e.target.value)}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="sensor-group">
+        <h3>Stimulation (7–20)</h3>
+        <div className="sensor-grid">
+          {Array.from({ length: 14 }, (_, i) => i + 7).map((num) => (
+            <div key={num} className="sensor-field">
+              <label htmlFor={`sensor-${num}`}>Sensor {num}</label>
+              <input
               id={`sensor-${num}`}
               type="number"
               min={0}
