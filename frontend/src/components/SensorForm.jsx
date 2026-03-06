@@ -100,6 +100,7 @@ export default function SensorForm({ onInsightsGenerated }) {
             />
           </div>
         ))}
+        </div>
       </div>
 
       <div className="feelings-field">
